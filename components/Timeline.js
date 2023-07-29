@@ -11,8 +11,7 @@ const GET_ART_PIECES = gql`
     }
   }
 `;
-
-const TimelinePage = () => {
+export default function Timeline() {
   const { loading, error, data } = useQuery(GET_ART_PIECES);
 
   if (loading) return <p>Loading...</p>;
@@ -22,7 +21,7 @@ const TimelinePage = () => {
 
   return (
     <div>
-      <h1>Art Showcase Timeline</h1>
+      <h1 style={{ padding: '32px' }}>On Top Analysis</h1>
       {artPieces.map((artPiece) => (
         <div key={artPiece.id}>
           <Card
@@ -34,6 +33,4 @@ const TimelinePage = () => {
       ))}
     </div>
   );
-};
-
-export default TimelinePage;
+}
