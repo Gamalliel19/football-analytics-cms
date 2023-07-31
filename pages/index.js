@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Navbar from '@/components/Navbar';
 import Timeline from '@/components/Timeline';
+import Marquee from 'react-fast-marquee';
 
 export default function Home() {
   return (
@@ -14,6 +15,16 @@ export default function Home() {
       <main>
         <>
           <Navbar />
+          <Marquee
+            style={{
+              backgroundColor: '#222',
+              color: '#f5f5f5',
+              padding: '8px',
+              fontSize: '32px',
+            }}
+          >
+            <h1>FOOTBALL ANALYSIS</h1>
+          </Marquee>
           <Timeline />
         </>
       </main>

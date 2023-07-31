@@ -1,8 +1,8 @@
-import { Grid, Button, useModal, Text } from '@nextui-org/react';
+import { Grid } from '@nextui-org/react';
 import Image from 'next/image';
 import CardModal from './CardModal';
 
-export default function Card({ image_url, description, id }) {
+export default function Card({ title, image_url, description, id, likes }) {
   return (
     <>
       <Grid.Container justify='center'>
@@ -38,22 +38,14 @@ export default function Card({ image_url, description, id }) {
               padding: '16px',
             }}
           >
-            <h1>{description}</h1>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Corporis, excepturi non voluptates ipsam illum voluptatem fugiat
-              dolores consectetur vero veniam eligendi sint nobis voluptatum
-              sed! Eos, quo! Amet iste ipsa animi, ducimus aliquam accusantium
-              ut voluptate in repellendus! Expedita illum ut excepturi molestiae
-              libero nulla nihil minima laudantium atque explicabo praesentium
-              iste id assumenda dolor, ex fugiat enim! Dolor et cupiditate vero
-              suscipit odio. Iusto debitis architecto unde exercitationem
-              dolorem consequuntur, nulla quisquam accusamus ad officia,
-              voluptatem quibusdam commodi optio odio eligendi rerum sapiente
-              reiciendis molestiae maiores illum! Consectetur iusto adipisci
-              nobis mollitia sed odit vel dolore neque possimus. Optio?
-            </p>
-            <CardModal image_url={image_url} description={description} />
+            <h1>{title}</h1>
+            <p>{description}</p>
+            <CardModal
+              image_url={image_url}
+              description={description}
+              title={title}
+              likes={likes}
+            />
           </div>
         </Grid>
       </Grid.Container>

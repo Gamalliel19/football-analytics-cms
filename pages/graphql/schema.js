@@ -1,25 +1,36 @@
-import { gql } from "apollo-server"
+import { gql } from 'apollo-server';
 
 const typeDefs = gql`
-  type ArtPiece {
+  type Content {
     id: ID!
+    title: String!
+    image_url: String!
+    description: String!
+    likes: Int!
+    created_at: String!
+    updated_at: String!
+  }
+
+  type InputContent {
+    id: ID!
+    title: String!
     image_url: String!
     description: String!
   }
 
   type Query {
-    artPieces: [ArtPiece]!
-  }
-
-  input ArtPieceInput {
-    id: ID!
-    image_url: String!
-    description: String!
+    contents: [Content]!
   }
 
   type Mutation {
-    addArtPiece(id:ID!, image_url:String!, description:String!): ArtPiece!
+    addContent(
+      id: ID!
+      title: String!
+      image_url: String!
+      description: String!
+    ): Content!
+    addLike(id: ID!): Content!
   }
 `;
 
-export default typeDefs
+export default typeDefs;
