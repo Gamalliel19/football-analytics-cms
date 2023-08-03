@@ -1,5 +1,20 @@
 import { Modal, useModal, Button, Grid } from '@nextui-org/react';
 import Image from 'next/image';
+import { useMutation, gql } from '@apollo/client';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+export const ADD_LIKES = gql`
+  mutation AddLike($id: ID!) {
+    addLike(id: $id) {
+      id
+      title
+      likes
+      image_url
+      description
+    }
+  }
+`;
 
 export default function CardModal({
   title,
@@ -9,6 +24,41 @@ export default function CardModal({
   id,
 }) {
   const { setVisible, bindings } = useModal();
+  const [addLike] = useMutation(ADD_LIKES);
+
+  console.log(id);
+  console.log(description);
+
+  const handleLikes = () => {
+    addLike({ variables: { id } })
+      .then((data) => {
+        console.log('Added Likes', data.data?.addLike);
+        toast('Added Likes!', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+      })
+      .catch((error) => {
+        console.error('Error adding likes: ', error);
+        toast('Error adding likes', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'dark',
+        });
+      });
+  };
+
   return (
     <div>
       <Button
@@ -135,13 +185,24 @@ export default function CardModal({
                   color: '#f5f5f5',
                   fontSize: '32px',
                 }}
-                onPress={() => setVisible(false)}
+                onPress={() => handleLikes()}
               >
                 LIKE
               </Button>
             </Grid>
           </Grid.Container>
         </Modal.Footer>
+        <ToastContainer
+          position='top-right'
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme='light'
+        />
       </Modal>
     </div>
   );

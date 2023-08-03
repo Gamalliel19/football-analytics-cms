@@ -1,8 +1,6 @@
 import { Grid } from '@nextui-org/react';
-import Image from 'next/image';
-import CardModal from './CardModal';
 
-export default function Card({ title, image_url, description, id, likes }) {
+export default function LoadingCard() {
   return (
     <>
       <Grid.Container justify='center'>
@@ -12,14 +10,13 @@ export default function Card({ title, image_url, description, id, likes }) {
           css={{ border: '1px solid #222222' }}
           justify='center'
         >
-          <Image
-            src={image_url}
-            alt={`${id} - ${description}`}
-            objectFit='contain'
-            width={0}
-            height={0}
-            style={{ width: '100%', height: '100%' }}
-          />
+          <div
+            style={{
+              height: '500px',
+              width: '100%',
+              backgroundColor: '#f1f1f1',
+            }}
+          ></div>
         </Grid>
         <Grid
           xs={12}
@@ -38,15 +35,21 @@ export default function Card({ title, image_url, description, id, likes }) {
               padding: '16px',
             }}
           >
-            <h1>{title}</h1>
-            <p>{description}</p>
-            <CardModal
-              image_url={image_url}
-              description={description}
-              title={title}
-              likes={likes}
-              id={id}
-            />
+            <div
+              style={{
+                height: '100px',
+                width: '300px',
+                backgroundColor: '#f1f1f1',
+              }}
+            ></div>
+            <div
+              style={{
+                height: '300px',
+                width: '100%',
+                backgroundColor: '#f1f1f1',
+              }}
+            ></div>
+            {/* <p>test</p> */}
           </div>
         </Grid>
       </Grid.Container>

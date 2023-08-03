@@ -1,6 +1,7 @@
 // pages/timeline.js
 import Card from '@/components/Card';
 import { useQuery, gql } from '@apollo/client';
+import LoadingCard from './LoadingCard';
 
 const GET_CONTENT = gql`
   query GetContent {
@@ -16,7 +17,7 @@ const GET_CONTENT = gql`
 export default function Timeline() {
   const { loading, error, data } = useQuery(GET_CONTENT);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <LoadingCard />;
   if (error) return <p>Error: {error.message}</p>;
 
   const { contents } = data;
@@ -24,6 +25,7 @@ export default function Timeline() {
   return (
     <div>
       {/* <h1 style={{ padding: '32px' }}>On Top Analysis</h1> */}
+
       {contents.map((content) => (
         <div key={content.id}>
           <Card

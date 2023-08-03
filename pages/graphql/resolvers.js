@@ -35,6 +35,30 @@ const resolvers = {
         client.release();
       }
     },
+    addLike: async (_, { id }) => {
+      const client = await pool.connect();
+      try {
+        const existingContent = await client.query(
+          'SELECT * FROM content WHERE id = $1;',
+          [id]
+        );
+        if (existingContent.rows.length === 0) {
+          throw new Error('Content ID not found');
+        }
+
+        // Update the likes count for the art piece
+        const result = await client.query(
+          'UPDATE content SET likes = likes + 1 WHERE id = $1 RETURNING *;',
+          [id]
+        );
+        return result.rows[0];
+      } catch (error) {
+        console.error('Error liking art piece:', error);
+        throw new Error('Failed to like the art piece.');
+      } finally {
+        client.release();
+      }
+    },
   },
 };
 
