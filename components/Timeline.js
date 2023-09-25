@@ -2,6 +2,7 @@
 import Card from '@/components/Card';
 import { useQuery, gql } from '@apollo/client';
 import LoadingCard from './LoadingCard';
+import { Grid } from '@nextui-org/react';
 
 const GET_CONTENT = gql`
   query GetContent {
@@ -23,20 +24,19 @@ export default function Timeline() {
   const { contents } = data;
 
   return (
-    <div>
+    <div >
       {/* <h1 style={{ padding: '32px' }}>On Top Analysis</h1> */}
-
-      {contents.map((content) => (
-        <div key={content.id}>
-          <Card
-            title={content.title}
-            image_url={content.image_url}
-            description={content.description}
-            likes={content.likes}
-            id={content.id}
-          />
-        </div>
-      ))}
+        {contents.map((content) => (
+          <div key={content.id}>
+              <Card
+                title={content.title}
+                image_url={content.image_url}
+                description={content.description}
+                likes={content.likes}
+                id={content.id}
+              />
+          </div>
+        ))}
     </div>
   );
 }

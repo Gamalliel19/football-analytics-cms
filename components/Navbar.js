@@ -1,11 +1,14 @@
 import { Grid, Link } from '@nextui-org/react';
 
+// Navbar
+
+
 export default function Navbar() {
   let login = true;
 
   return (
     <>
-      <Grid.Container gap={2} justify='center'>
+      <Grid.Container gap={2} justify='center' alignContent='center'>
         <Grid
           xs={12}
           md={2}
@@ -19,6 +22,7 @@ export default function Navbar() {
         >
           <Link
             css={{
+              alignItems: 'center',
               color: 'inherit',
               '&:hover': { backgroundColor: '#222', color: '#f5f5f5' },
             }}
@@ -49,6 +53,7 @@ export default function Navbar() {
           {!login ? (
             <Link
               css={{
+                alignItems: 'center',
                 color: 'inherit',
                 '&:hover': { backgroundColor: '#222', color: '#f5f5f5' },
               }}
@@ -59,6 +64,7 @@ export default function Navbar() {
           ) : (
             <Link
               css={{
+                alignItems: 'center',
                 color: 'inherit',
                 '&:hover': { backgroundColor: '#222', color: '#f5f5f5' },
               }}
